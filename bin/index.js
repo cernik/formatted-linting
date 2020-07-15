@@ -69,6 +69,9 @@ module.exports = (() => {
         `> eslint has found ${report.warningCount} warning(s)`
       )
     );
+    const results = report.results.filter(
+      (x) => x.errorCount || x.warningCount
+    );
 
     console.log(chalk.bold.redBright(`> eslint has found ${report.errorCount} error(s)`));
     console.log(formatter(report.results));
