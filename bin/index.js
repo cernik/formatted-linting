@@ -86,6 +86,31 @@ module.exports = (() => {
       });
     }
 
+    if (args.write) {
+      const fileName = `eslint-results-${
+        report.errorCount + report.warningCount
+      }.json`;
+      console.log(`> eslint is writing results into ${fileName}`);
+      fs.writeFile(
+        fileName,
+        JSON.stringify(
+          results.reduce((acc, item) => {
+            return item.messages.reduce(
+              (acc2, message) => ({
+                ...acc2,
+                [message.ruleId]: (acc2[message.ruleId] || 0) + 1,
+              }),
+              acc
+            );
+          }, {})
+        ),
+        (err) => {
+          if (err) {
+            throw err;
+          }
+        }
+      );
+    }
     return;
   }
 
