@@ -32,6 +32,7 @@ formatted-linting --dir <value> --ext <value> --conf <value>
 ```
 
 Where:
+
 - `--dir` is a directory to traverse for files,
 - `--ext` specifies an extension that should be checked by the linter,
 - `--conf` is a path to a client `.eslintrc.js` file.
@@ -39,6 +40,16 @@ Where:
 You can specify as much `--dir` or `--ext` options as you like, but it should be only one `--conf` options.
 
 If the path to a config file was not specified and there is no `.eslintrc.js` file in the root directory of the client app, the default config file will be used.
+
+More available options:
+
+- `--log` ia a flag to log into console, default: false
+- `--write` is a flag to log formatted data into a json file with a name like `eslint-results-9999.json, default: false
+- `--write-raw` is a flag to log raw data into a json file with a name like `eslint-results-9999-raw.json, default: false
+- `--open` or `--open-async` is a flag to open founded files with VSCode, default: false
+- `--open-max` specifies how many files to open, default: 20
+- `--open-all` specifies to open all founed files in editor, default: false
+- `--editor` specifies editor to open, default: code for VSCode
 
 The default configuration is:
 
@@ -57,4 +68,5 @@ module.exports = {
 The `formatted-linting` by default extends a configuration called [`eslint-config-standard`](https://github.com/standard/eslint-config-standard). It also setts a `node` environment and switches off `semi` and `space-before-function-paren` rules, that is enabled by default in `eslint-config-standard`. The `eslint-plugin-json` allows to lint JSON files.
 
 ## License
+
 [MIT](https://tldrlegal.com/license/mit-license)
