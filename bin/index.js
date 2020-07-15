@@ -15,7 +15,9 @@ module.exports = (() => {
   // Check if the path to a client config was specified
   if (args.conf) {
     if (Array.isArray(args.conf)) {
-      const error = chalk.bold.redBright(`> eslint requires a single config file`);
+      const error = chalk.bold.redBright(
+        `> eslint requires a single config file`
+      );
 
       return console.log(error);
     }
@@ -47,7 +49,7 @@ module.exports = (() => {
       .concat(args.dir)
       .map((item) => path.resolve(process.cwd(), item));
   } else {
-    filesDir = ['./']
+    filesDir = ['./'];
   }
 
   console.log(`> eslint is checking the following dir: ${filesDir}`);
