@@ -73,8 +73,6 @@ module.exports = (() => {
       (x) => x.errorCount || x.warningCount
     );
 
-    console.log(chalk.bold.redBright(`> eslint has found ${report.errorCount} error(s)`));
-    console.log(formatter(report.results));
 
     return;
   }
