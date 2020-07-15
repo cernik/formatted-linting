@@ -4,6 +4,7 @@ const CLIEngine = require('eslint').CLIEngine;
 const minimist = require('minimist');
 const path = require('path');
 const chalk = require('chalk');
+const fs = require('fs');
 
 module.exports = (() => {
   const args = minimist(process.argv.slice(2));
@@ -73,6 +74,17 @@ module.exports = (() => {
       (x) => x.errorCount || x.warningCount
     );
 
+    if (args['write-raw']) {
+      const fileName = `eslint-results-${
+        report.errorCount + report.warningCount
+      }-raw.json`;
+      console.log(`> eslint is writing raw results into ${fileName}`);
+      fs.writeFile(fileName, JSON.stringify(results), (err) => {
+        if (err) {
+          throw err;
+        }
+      });
+    }
 
     return;
   }
