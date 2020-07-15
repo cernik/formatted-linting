@@ -124,7 +124,7 @@ module.exports = (() => {
             return acc.concat(`${item.filePath} `);
           }
           return acc;
-        }, ')}`,
+        }, '')}`,
         (err, stdout, stderr) => {
           if (err) {
             console.error(err);
