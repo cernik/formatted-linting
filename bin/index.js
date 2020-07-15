@@ -61,6 +61,14 @@ module.exports = (() => {
     if (args.log) {
       console.log(formatter(report.results));
     }
+    console.log(
+      chalk.bold.redBright(`> eslint has found ${report.errorCount} error(s)`)
+    );
+    console.log(
+      chalk.bold.redBright(
+        `> eslint has found ${report.warningCount} warning(s)`
+      )
+    );
 
     console.log(chalk.bold.redBright(`> eslint has found ${report.errorCount} error(s)`));
     console.log(formatter(report.results));
