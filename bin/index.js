@@ -5,6 +5,7 @@ const minimist = require('minimist');
 const path = require('path');
 const chalk = require('chalk');
 const fs = require('fs');
+const { exec, execSync } = require('child_process');
 
 module.exports = (() => {
   const args = minimist(process.argv.slice(2));
@@ -108,6 +109,28 @@ module.exports = (() => {
           if (err) {
             throw err;
           }
+        }
+      );
+    }
+
+    if (args['open-async'] || args.open) {
+      const fn = args.open ? execSync : exec;
+      const openMax = args['open-max'] || 20;
+      const openAll = !!args['open-all'];
+
+      fn(
+        `${args.editor || 'code'} ${results.reduce((acc, item, index) => {
+          if (openAll || index <= openMax) {
+            return acc.concat(`${item.filePath} `);
+          }
+          return acc;
+        }, ')}`,
+        (err, stdout, stderr) => {
+          if (err) {
+            console.error(err);
+            return;
+          }
+          console.log(stdout);
         }
       );
     }
