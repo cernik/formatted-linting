@@ -56,7 +56,7 @@ module.exports = (() => {
 
   const report = cli.executeOnFiles(filesDir);
 
-  if (report.errorCount > 0) {
+  if (report.errorCount > 0 || report.warningCount > 0) {
     const formatter = cli.getFormatter();
 
     console.log(chalk.bold.redBright(`> eslint has found ${report.errorCount} error(s)`));
