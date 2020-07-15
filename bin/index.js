@@ -58,6 +58,9 @@ module.exports = (() => {
 
   if (report.errorCount > 0 || report.warningCount > 0) {
     const formatter = cli.getFormatter();
+    if (args.log) {
+      console.log(formatter(report.results));
+    }
 
     console.log(chalk.bold.redBright(`> eslint has found ${report.errorCount} error(s)`));
     console.log(formatter(report.results));
